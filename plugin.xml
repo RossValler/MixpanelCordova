@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+           id="ca.valler.phonegap.mixpanel"
+      version="0.1">
+    <name>Mixpanel Cordova</name>
+    <description>Implement support for identifying a user with Mixpanel for push notifications registration</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,mixpanel,push,notifications,identify</keywords>
+    <repo>https://github.com/RossValler/MixpanelCordova.git</repo>
+
+    <js-module src="www/CDVMixpanel.js" name="mixpanel">
+        <clobbers target="CDVMixpanel" />
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Mixpanel">
+                <param name="ios-package" value="CDVMixpanel" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVMixpanel.h" />
+        <source-file src="src/ios/CDVMixpanel.m" />
+    </platform>
+
+</plugin>
