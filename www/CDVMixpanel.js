@@ -24,101 +24,12 @@ var exec = require('cordova/exec');
 module.exports = {
 
 	//-----------------------------------------
-	// Methods for badge interactions
+	// Identify with Mixpanel natively
 	//-----------------------------------------
-	"badge": {
-
-		/**
-		 * Get the current number on the badge
-		 *
-		 * @param  {Callback}  successCallback
-		 */
-		count: function(successCallback){
-
-			var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
-
-			exec(successCallback, null, "ParsePushNotifications", "getNumberOfNotifications", []);
-		},
-
-		/**
-		 * Clear notification badge
-		 *
-		 * @param  {Callback}  successCallback
-		 */
-		clear: function(successCallback){
-
-			var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
-
-			exec(successCallback, null, "ParsePushNotifications", "clearNotifications", []);
-		},
-
-		/**
-		 * Deduct an amount from the badge
-		 *
-		 * @param  {Callback}  successCallback
-		 * @param  {Number}    amount           Number of notifications to subtract
-		 */
-		deduct: function(successCallback, deductAmount){
-
-			var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
-
-			exec(successCallback, null, "ParsePushNotifications", "deductFromActiveNotificationsBadge", [deductAmount]);
-		}
-	},
-
-	//-----------------------------------------
-	// Methods for notification channels
-	//-----------------------------------------
-	"channels": {
-
-		/**
-		 * Subscribe to a push channel
-		 *
-		 * @param  {String}    channelName 	Channel to subscribe to
-		 * @param  {Callback}  successCallback
-		 */
-		subscribe: function(successCallback, channelName){
-
-			var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
-
-			exec(successCallback, null, "ParsePushNotifications", "subscribeToChannel", [channelName]);
-		},
-
-		/**
-		 * Unsubscribe from a push channel
-		 *
-		 * @param  {String}    channelName 	Channel to unsubscribe from
-		 * @param  {Callback}  successCallback
-		 */
-		unsubscribe: function(successCallback, channelName){
-
-			var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
-
-			exec(successCallback, null, "ParsePushNotifications", "unsubscribeFromChannel", [channelName]);
-		},
-
-		/**
-		 * Get subscribed channels
-		 *
-		 * @param  {Callback}  successCallback
-		 */
-		list: function(successCallback){
-
-			var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
-
-			exec(successCallback, null, "ParsePushNotifications", "getSubscribedChannels", []);
-		}
-	},
-
-	/**
-	 * Get launch data if app is launched from a notification
-	 *
-	 * @param  {Callback}  successCallback
-	 */
-	launchData: function(successCallback){
+	identify: function(distinctId, successCallback){
 
 		var successCallback = (typeof successCallback === 'function') ? successCallback : function(){};
 
-		exec(successCallback, null, "ParsePushNotifications", "getLaunchNotificationData", []);
+		exec(successCallback, null, "Mixpanel", "identify", [distinctId]);
 	}
 };
